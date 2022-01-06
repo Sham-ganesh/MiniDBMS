@@ -1,7 +1,7 @@
 import java.util.HashMap;
 
 public class Main {
-    public DataBase currentDB;
+    public static DataBase currentDB;
     public static HashMap<String, DataBase> DataBases = new HashMap<>();
 
     public static void main(String[] args) {
@@ -10,5 +10,7 @@ public class Main {
         DBUtils.createDB("StudentDB");
         DBUtils.createDB("EmployeeDB");
         DBUtils.checkForDataBases(DataBases);
+
+        AppGUI app = new AppGUI();
     }
 }

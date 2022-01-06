@@ -40,6 +40,6 @@ public class DBUtils {
         }
     }
     public static void useDB(String DBName) {
-
+        Main.currentDB = Main.DataBases.get(DBName);
     }
 }
