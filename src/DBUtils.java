@@ -39,4 +39,7 @@ public class DBUtils {
             System.out.println(e);
         }
     }
+    public static void useDB(String DBName) {
+
+    }
 }
