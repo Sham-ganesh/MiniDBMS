@@ -1,2 +1,7 @@
 # Project exclude paths
 /out/
+out/
+MiniDB/
+sample.txt
+target/
+.DS_Store

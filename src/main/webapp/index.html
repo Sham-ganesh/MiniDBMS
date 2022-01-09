@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        DBMS
+    </title>
+    <style>
+        *{
+          margin: 0;
+          padding: 0;
+        }
+
+        body{
+          background: #f1f1f1;
+        }
+
+        .container{
+          width: 35%;
+          margin: 30px auto;
+        }
+
+        .signup,
+        .login{
+          width: 50%;
+          background: #ff3333;
+          float: left;
+          height: 60px;
+          line-height: 60px;
+          text-align: center;
+          cursor: pointer;
+        }
+
+        .signup-form,
+        .login-form{
+          background: #fff;
+          padding: 40px;
+          clear: both;
+          width: 100%;
+          box-sizing: border-box;
+          height: 360px;
+        }
+
+        .signup-form {
+            height:500px;
+        }
+
+        .input{
+          width: 100%;
+          padding: 20px;
+          box-sizing: border-box;
+          margin-bottom: 25px;
+          border: 2px solid #dedede;
+          color: black;
+          font-size: 14px;
+          outline: none;
+          transform: all 0.5s ease;
+        }
+
+        .btn{
+          width: 100%;
+          background: darkblue;
+          height: 60px;
+          text-align: center;
+          line-height: 60px;
+          color: #fff;
+          font-weight: bold;
+          cursor: pointer;
+          margin-bottom: 30px;
+        }
+
+        span a{
+          text-decoration: none;
+          color: #000;
+        }
+    </style>
+    <script>
+        function hidelogin() {
+            var login = document.getElementById("login_form");
+            var signup = document.getElementById("signup_form");
+            var login_btn = document.getElementById("login_btn");
+            var signup_btn = document.getElementById("signup_btn");
+
+            login.style.display = "none";
+            login_btn.style.backgroundColor = "rgba(255, 0, 0, 0.1)";
+            signup.style.display = "block";
+            signup_btn.style.backgroundColor = "#fff";
+        }
+
+        function hidesignup() {
+            var login = document.getElementById("login_form");
+            var signup = document.getElementById("signup_form");
+            var login_btn = document.getElementById("login_btn");
+            var signup_btn = document.getElementById("signup_btn");
+
+            signup.style.display = "none";
+            signup_btn.style.backgroundColor = "rgba(255, 0, 0, 0.1)";
+            login.style.display = "block";
+            login_btn.style.backgroundColor = "#fff";
+        }
+    </script>
+
+</head>
+<body onload="hidesignup();">
+<div class="container">
+
+    <div class="login" id="login_btn" onclick="hidesignup()">LOGIN</div>
+    <div class="signup" id="signup_btn" onclick="hidelogin()">SIGN UP</div>
+
+    <div class="login-form" id="login_form">
+        <form id="login" name="login" action="login" id="login" method="post">
+            <input type="text" placeholder="username" class="input" id="login-uname" name="uname" required><br>
+            <input type="password" placeholder="password" class="input" id="pass" name="pass" required><br>
+            <input type="submit" value="LOGIN" name="loginbtn" class="btn"><br>
+        </form>
+        <center><span><a href="#"> FORGOT PASSWORD </a></span></center>
+    </div>
+
+    <div class="signup-form" id="signup_form">
+        <form id="signup" action="signup.php" method="post" enctype="multipart/form-data">
+            <input type="text" placeholder="Name" class="input" id="signup-uname" name="uname" required><br>
+            <input type="password" placeholder="Password" class="input" id="pwd" name="pwd" required><br>
+            <input type="password" placeholder="retype password" class="input" id="rpwd" name="rpwd" required><br>
+            <input type="submit" value="CREATE ACCOUNT" name="signupbtn" class="btn">
+        </form>
+    </div>
+
+    <div id="error" class="errorcontainer"></div>
+
+</div>
+</body>
+</html>
