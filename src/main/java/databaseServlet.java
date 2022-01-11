@@ -15,13 +15,21 @@ public class databaseServlet extends HttpServlet {
 
             if(act == null) {
                 DBUtils.createDB(name);
-                res.sendRedirect("login");
+                //res.sendRedirect("login");
+                PrintWriter out = res.getWriter();
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('DataBase created pls login again');");
+                out.println("location='index.html';");
+                out.println("</script>");
             }else if(act.equals("select")){
                 DBUtils.useDB(name);
                 System.out.println(Main.currentDB.DBName);
+                //res.sendRedirect("login");
+                PrintWriter out = res.getWriter();
+                out.println("<button onclick=\"history.back()\">Go Back</button>");
             }else if(act.equals("delete")) {
                 DBUtils.deleteDB(name);
-                //res.sendRedirect("database.jsp");
+                res.sendRedirect("index.html");
             }else {
                 PrintWriter out = res.getWriter();
                 out.println("<br><br><br><center><h1>BAD REQUEST</h1></center>");
