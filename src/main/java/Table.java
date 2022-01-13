@@ -95,14 +95,14 @@ public class Table {
         tempFile.delete();
         out.close();in.close();
     }
-    public void select(String[] str) throws IOException {
+    public ArrayList<String> select(String[] str) throws IOException {
         //tablename select all //3
         //tablename select (rno,name) //3
         //tablename select all where rno=2 //5
         //tablename select (rno,name) where rno=2 //5
         ArrayList<String> ans= new ArrayList<String>();
         String field,val,type;int i;
-        BufferedReader in = new BufferedReader(new FileReader("sample.txt"));
+        BufferedReader in = new BufferedReader(new FileReader(filePath));
         String[] f= new String[20];
         String[] q= new String[20];
 
@@ -167,7 +167,7 @@ public class Table {
             if(ind==-1)
             {
                 System.out.println("No field named " + t);
-                return;
+                return null;
             }
             t=t1[1];
             while((type=in.readLine())!=null){
@@ -208,7 +208,7 @@ public class Table {
             if(ind==-1)
             {
                 System.out.println("No field named " + t);
-                return;
+                return null;
             }
             t=t1[1];
             while((type=in.readLine())!=null){
@@ -227,9 +227,9 @@ public class Table {
         }
         System.out.println("Answer stored in matrix :");
         System.out.println(ans);
-
+        return ans;
     }
-    public void query_processing(String q) throws IOException {
+    public ArrayList<String> query_processing(String q) throws IOException {
         String[] str=new String[20];
         str=q.split(" ");int i;
         String data="",chac,chav,conc,conv;
@@ -256,8 +256,7 @@ public class Table {
                 break;
             case 'S' :
             case 's' :
-                select(str);
-                break;
+                return select(str);
             case 'U' :
             case 'u':
                 //tablename update name=sham where rno=5;
@@ -313,5 +312,6 @@ public class Table {
             default:
                 System.out.println("Invalid Syntax...Check your Syntax");
         }
+        return null;
     }
 }

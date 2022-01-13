@@ -5,3 +5,4 @@ MiniDB/
 sample.txt
 target/
 .DS_Store
+.idea/
