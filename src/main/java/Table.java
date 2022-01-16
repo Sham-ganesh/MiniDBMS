@@ -1,7 +1,9 @@
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Table {
+public class Table extends Component {
     public String tableName;
     public String filePath;
 
@@ -48,13 +50,20 @@ public class Table {
         line1=in.readLine();out.println(line1);
         line1=in.readLine();out.println(line1);
         String[] f= new String[20];
+        int flag=0;
         while((line1=in.readLine())!=null) {
             f = line1.split(",");
-            if (f[i].equals(val))
+            if (f[i].equals(val)){
                 out.println(str);
+                flag=1;
+            }
             else
                 out.println(line1);
         }
+        if(flag==0)
+            JOptionPane.showMessageDialog(this,
+                    "No record found with Field value :" + val,
+                    "NOTE", JOptionPane.INFORMATION_MESSAGE);
         System.out.println(str+ " " + val + " " + i);
         out.close();in.close();
         bw = new BufferedWriter(new FileWriter(filePath));
@@ -76,13 +85,20 @@ public class Table {
         line1=in.readLine();out.println(line1);
         line1=in.readLine();out.println(line1);
         String[] f= new String[20];
+        int flag=0;
         while((line1=in.readLine())!=null) {
             f = line1.split(",");
-            if (f[i].equals(val))
+            if (f[i].equals(val)) {
+                flag = 1;
                 continue;
+            }
             else
                 out.println(line1);
         }
+        if(flag==0)
+            JOptionPane.showMessageDialog(this,
+                    "No record found with Field value " + val,
+                    "NOTE", JOptionPane.INFORMATION_MESSAGE);
         System.out.println( val + " " + i);
         out.close();in.close();
         bw = new BufferedWriter(new FileWriter(filePath));
@@ -132,9 +148,18 @@ public class Table {
             q=str[2].split(",");
             int j,flag;
             for(j=0;j<q.length;j++) {
+                flag=0;
                 for (i = 0; i < f.length; i++) {
-                    if (q[j].equals(f[i]))
-                        v[i]= 1;
+                    if (q[j].equals(f[i])) {
+                        flag = 1;
+                        v[i] = 1;
+                    }
+                }
+                if(flag==0) {
+                    JOptionPane.showMessageDialog(this,
+                            "Invalid Syntax.....!\nField " + q[j] +" doesn't exist in the table",
+                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return null;
                 }
             }
             for(i=0;i<f.length;i++)
@@ -157,7 +182,7 @@ public class Table {
         }
         else if( str.length==5 && str[2].equals("all") && str[3].equals("where") )
         {
-            String t=str[4];int ind=-1;
+            String t=str[4];int ind=-1,flag=0;
             String[] t1=str[4].split("=");
             t=t1[0];
             ans.add(field);
@@ -166,7 +191,10 @@ public class Table {
                     ind=i;
             if(ind==-1)
             {
-                System.out.println("No field named " + t);
+                JOptionPane.showMessageDialog(this,
+                        "Invalid Syntax.....!\nField " + t +" doesn't exist in the table",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
+               System.out.println("No field named " + t);
                 return null;
             }
             t=t1[1];
@@ -180,7 +208,6 @@ public class Table {
                     System.out.println();
                 }
             }
-
         }
         else if(str.length==5){
             String temp="";
@@ -188,9 +215,19 @@ public class Table {
             q=str[2].split(",");
             int j,flag;
             for(j=0;j<q.length;j++) {
+                flag=0;
                 for (i = 0; i < f.length; i++) {
-                    if (q[j].equals(f[i]))
+                    if (q[j].equals(f[i])) {
                         v[i] = 1;
+                        flag = 1;
+                        break;
+                    }
+                }
+                if(flag==0) {
+                    JOptionPane.showMessageDialog(this,
+                            "Invalid Syntax.....!\nField " + q[j] +" doesn't exist in the table",
+                            "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return null;
                 }
             }
             for(i=0;i<f.length;i++)
@@ -207,7 +244,10 @@ public class Table {
                     ind=i;
             if(ind==-1)
             {
-                System.out.println("No field named " + t);
+                JOptionPane.showMessageDialog(this,
+                    "Invalid Syntax.....!\nField " + t +" doesn't exist in the table",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+                //System.out.println("No field named " + t);
                 return null;
             }
             t=t1[1];
@@ -225,8 +265,14 @@ public class Table {
                 }
             }
         }
-        System.out.println("Answer stored in matrix :");
-        System.out.println(ans);
+        else
+        {
+            JOptionPane.showMessageDialog(this,"Invalid Syntax.....!!!",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        //System.out.println("Answer stored in matrix :");
+        //System.out.println(ans);
         return ans;
     }
     public ArrayList<String> query_processing(String q) throws IOException {
@@ -246,12 +292,17 @@ public class Table {
         switch(str[1].charAt(0)){
             case 'I' :
             case 'i' :
-                //tablename insert values(1,sham,34)
+                //tablename insert values (1,sham,34)
                 //table insert (rno,name) values (1,sham)
                 if(str.length==4)
                 {
                     str[3]=str[3].substring(1,str[3].length()-1);
                     insert(str[3]);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Invalid Syntax...Check your Syntax ",
+                            "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
                 break;
             case 'S' :
@@ -305,13 +356,17 @@ public class Table {
                     if(col[i].equals(conc))
                         coni=i;
 
-                System.out.println("parameter : "+ conv + " : " + coni);
+                //System.out.println("parameter : "+ conv + " : " + coni);
                 in.close();
                 delete(conv,coni);
                 break;
             default:
-                System.out.println("Invalid Syntax...Check your Syntax");
+                JOptionPane.showMessageDialog(this, "Invalid Syntax...Check your Syntax ",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
+                //System.out.println("Invalid Syntax...Check your Syntax");
         }
-        return null;
+        q="table select all";
+        str=q.split(" ");
+        return select(str);
     }
 }

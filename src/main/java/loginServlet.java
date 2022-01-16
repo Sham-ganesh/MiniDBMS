@@ -15,7 +15,7 @@ public class loginServlet extends HttpServlet {
             String userName = req.getParameter("uname");
             String pwd = req.getParameter("pass");
 
-            BufferedReader in = new BufferedReader(new FileReader("users.txt"));
+            BufferedReader in = new BufferedReader(new FileReader("userDetails.txt"));
             String line;int flag=0;
             String[] str=new String[20];
             while((line=in.readLine())!=null)

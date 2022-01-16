@@ -144,8 +144,9 @@ public class App extends JFrame implements ActionListener, KeyListener {
             cli.setText("");
 
             try {
-                currentTable.query_processing(query);
-                ArrayList<String> data = currentTable.query_processing("table select all");
+                ArrayList<String> data = currentTable.query_processing(query);
+                if(data == null)
+                data = currentTable.query_processing("table select all");
                 updateTable(data);
             }catch (IOException exp) {
                 System.out.println(exp);
