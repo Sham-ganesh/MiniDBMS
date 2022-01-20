@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22c9ff01-6364-4c6c-9ace-dbbb515492c6" name="Default Changelist" comment="Made application robust.">
+    <list default="true" id="22c9ff01-6364-4c6c-9ace-dbbb515492c6" name="Default Changelist" comment="Added Drop and add column functionality">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DBUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DBUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Table.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -150,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642328866361</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added Drop and add column functionality">
+      <created>1642700047647</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1642700047647</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,6 +173,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Made application robust." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made application robust." />
+    <MESSAGE value="Added Drop and add column functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Drop and add column functionality" />
   </component>
 </project>

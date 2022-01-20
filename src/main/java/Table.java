@@ -81,10 +81,10 @@ public class Table extends Component {
         tempFile.delete();
         out.close();in.close();
     }
-    public static void add_col(String colname,String coltype,String defval) throws IOException {
+    public  void add_col(String colname,String coltype,String defval) throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter("temp.txt"));
         PrintWriter out = new PrintWriter(bw);
-        BufferedReader in = new BufferedReader(new FileReader("sample.txt"));
+        BufferedReader in = new BufferedReader(new FileReader(filePath));
 
         String line1;
         line1=in.readLine();line1+=","+colname;
@@ -96,18 +96,20 @@ public class Table extends Component {
             out.println(line1);
         }
         out.close();in.close();
-        bw = new BufferedWriter(new FileWriter("sample.txt"));
+        bw = new BufferedWriter(new FileWriter(filePath));
         out = new PrintWriter(bw);
         in = new BufferedReader(new FileReader("temp.txt"));
         while((line1=in.readLine())!=null) {
             out.println(line1);
         }
+        File tempFile = new File("temp.txt");
+        tempFile.delete();
         out.close();in.close();
     }
-    public static void drop_col(int pos) throws IOException {
+    public void drop_col(int pos) throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter("temp.txt"));
         PrintWriter out = new PrintWriter(bw);
-        BufferedReader in = new BufferedReader(new FileReader("sample.txt"));
+        BufferedReader in = new BufferedReader(new FileReader(filePath));
 
         String line1;
         String[] f= new String[20];
@@ -125,12 +127,14 @@ public class Table extends Component {
             out.println(temp);
         }
         out.close();in.close();
-        bw = new BufferedWriter(new FileWriter("sample.txt"));
+        bw = new BufferedWriter(new FileWriter(filePath));
         out = new PrintWriter(bw);
         in = new BufferedReader(new FileReader("temp.txt"));
         while((line1=in.readLine())!=null) {
             out.println(line1);
         }
+        File tempFile = new File("temp.txt");
+        tempFile.delete();
         out.close();in.close();
     }
     public void delete(String val,int i) throws IOException {
