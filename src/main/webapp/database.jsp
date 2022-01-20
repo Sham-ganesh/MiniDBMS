@@ -47,6 +47,7 @@
 
         .button1 {background-color: #4CAF50;} /* Green */
         .button2 {background-color: #DC143C;} /* Blue */
+        .button3 {background-color: #FFA500;} /* Orange */
     </style>
 </head>
 <body>
@@ -69,6 +70,7 @@
                               + "<td><center>" + name + "</center></td>"
                               + "<td><a href='/MiniDBMS/database?name="+name+"&act=select'><button class='button button1'>SELECT</button></a></td>"
                               + "<td><a href='/MiniDBMS/database?name="+name+"&act=delete'><button class='button button2'>DELETE</button></a></td>"
+                              + "<td><a href='/MiniDBMS/database?name="+name+"&act=export'><button class='button button3'>EXPORT</button></a></td>"
                               + "</tr>");
                 }
             %>

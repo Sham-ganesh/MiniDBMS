@@ -30,6 +30,9 @@ public class databaseServlet extends HttpServlet {
             }else if(act.equals("delete")) {
                 DBUtils.deleteDB(name);
                 res.sendRedirect("index.html");
+            }else if (act.equals("export")) {
+                DataBase db = new DataBase(name, DBUtils.DBFolderPath+"/"+name);
+                MailService.sendEmail(name, db.tables);
             }else {
                 PrintWriter out = res.getWriter();
                 out.println("<br><br><br><center><h1>BAD REQUEST</h1></center>");
