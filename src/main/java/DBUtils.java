@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DBUtils {
-    public static final String DBFolderPath = "/Users/yogeeswar/Desktop/MiniDBMS/MiniDB";
+    public static final String DBFolderPath = "C:/Users/user/IdeaProjects/MiniDBMS/MiniDB";
     public static final String DBDetailsFilePath = DBFolderPath + "/DBDetails.txt";
 
     public static void createDB(String name)  {

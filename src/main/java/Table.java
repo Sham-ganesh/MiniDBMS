@@ -81,6 +81,58 @@ public class Table extends Component {
         tempFile.delete();
         out.close();in.close();
     }
+    public static void add_col(String colname,String coltype,String defval) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter("temp.txt"));
+        PrintWriter out = new PrintWriter(bw);
+        BufferedReader in = new BufferedReader(new FileReader("sample.txt"));
+
+        String line1;
+        line1=in.readLine();line1+=","+colname;
+        out.println(line1);
+        line1=in.readLine();line1+=","+coltype;
+        out.println(line1);
+        while((line1=in.readLine())!=null) {
+            line1+=","+defval;
+            out.println(line1);
+        }
+        out.close();in.close();
+        bw = new BufferedWriter(new FileWriter("sample.txt"));
+        out = new PrintWriter(bw);
+        in = new BufferedReader(new FileReader("temp.txt"));
+        while((line1=in.readLine())!=null) {
+            out.println(line1);
+        }
+        out.close();in.close();
+    }
+    public static void drop_col(int pos) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter("temp.txt"));
+        PrintWriter out = new PrintWriter(bw);
+        BufferedReader in = new BufferedReader(new FileReader("sample.txt"));
+
+        String line1;
+        String[] f= new String[20];
+        while((line1=in.readLine())!=null) {
+            f = line1.split(",");
+            String temp="";
+            for(int k = 0; k<f.length; k++) {
+                if (k == pos)
+                    continue;
+                else
+                    temp += f[k] + ",";
+            }
+            temp=temp.substring(0,temp.length()-1);
+            System.out.println(temp);
+            out.println(temp);
+        }
+        out.close();in.close();
+        bw = new BufferedWriter(new FileWriter("sample.txt"));
+        out = new PrintWriter(bw);
+        in = new BufferedReader(new FileReader("temp.txt"));
+        while((line1=in.readLine())!=null) {
+            out.println(line1);
+        }
+        out.close();in.close();
+    }
     public void delete(String val,int i) throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter("temp.txt"));
         PrintWriter out = new PrintWriter(bw);
@@ -297,6 +349,53 @@ public class Table extends Component {
         col=line1.split(",");
         line1=in.readLine();
         switch(str[1].charAt(0)){
+            case 'a':
+            case 'A':
+                //tablename add column (column_name,datatype)
+                //tablename add column (column_name,datatype) set val=abc
+                //sample add column (code,int)
+                str[3]=str[3].substring(1,str[3].length()-1);
+                String[]cha=new String[2];
+                cha=str[3].split(",");
+                String colname=cha[0];
+                String ctype=cha[1];
+                if(ctype.equals("int")) {
+                    ctype = "\\d+,";
+                }
+                else if(ctype.equals("double")) {
+                    ctype = "\\d*[.]\\d+,";
+                }
+                else if(ctype.equals("date")) {
+                    ctype = "\\d{2}[/]\\d{2}[/]\\d{4},";
+                }
+                else if(ctype.equals("String")) {
+                    ctype = "String,";
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"Invalid Datatype!!\n" + ctype +" dataype not found!",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+                    System.out.println("Invalid Datatype!!\n" + ctype +" dataype not found!" );
+                    break;
+                }
+                if(str.length==5){
+                    cha=str[4].split("=");
+                    System.out.println(cha[1]);
+                    add_col(colname,ctype,cha[1]);
+                }
+                else
+                    add_col(colname,ctype," ");
+                break;
+            case 'f':
+            case 'F':
+                //table field column_name drop
+                int pos=-1;
+                for(i=0;i<col.length;i++)
+                    if(col[i].equals(str[2])){
+                        pos=i;
+                        break;
+                    }
+                drop_col(pos);
+                break;
             case 'I' :
             case 'i' :
                 //tablename insert values (1,sham,34)
