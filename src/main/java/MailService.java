@@ -9,8 +9,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 public class MailService {
-    public static void sendEmail(String dbName, HashMap<String, Table> tables) {
-        String to = "yogeeswartestmail@gmail.com";
+    public static void sendEmail(String to, String dbName, HashMap<String, Table> tables) {
         String from = "yogeeswartestmail@gmail.com";
         String host = "smtp.gmail.com";
 

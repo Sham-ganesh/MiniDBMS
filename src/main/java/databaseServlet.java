@@ -2,7 +2,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 
 public class databaseServlet extends HttpServlet {
@@ -31,8 +34,12 @@ public class databaseServlet extends HttpServlet {
                 DBUtils.deleteDB(name);
                 res.sendRedirect("index.html");
             }else if (act.equals("export")) {
+                BufferedReader reader = new BufferedReader(new FileReader("userDetails.txt"));
+                String data = reader.readLine();
+                reader.close();
+                String credentials[] = data.split(",");
                 DataBase db = new DataBase(name, DBUtils.DBFolderPath+"/"+name);
-                MailService.sendEmail(name, db.tables);
+                MailService.sendEmail(credentials[0], name, db.tables);
             }else {
                 PrintWriter out = res.getWriter();
                 out.println("<br><br><br><center><h1>BAD REQUEST</h1></center>");

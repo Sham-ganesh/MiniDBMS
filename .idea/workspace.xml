@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="22c9ff01-6364-4c6c-9ace-dbbb515492c6" name="Default Changelist" comment="Added Drop and add column functionality">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Table.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DBUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DBUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/databaseServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/databaseServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,12 +108,12 @@
         <map />
       </option>
       <option name="passParentEnvironmentVariables" value="true" />
-      <option name="port" value="10200" />
+      <option name="port" value="8080" />
       <option name="tomcatInfo">
         <TomcatInfo>
           <option name="name" value="Apache Tomcat/10.0.14" />
           <option name="number" value="0" />
-          <option name="path" value="C:\Users\user\Desktop\JAVA\Extras\apache-tomcat-10.0.14" />
+          <option name="path" value="$USER_HOME$/Downloads/apache-tomcat-10.0.14" />
           <option name="version" value="10.0.14.0" />
         </TomcatInfo>
       </option>
