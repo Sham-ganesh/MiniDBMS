@@ -25,12 +25,15 @@ public class Table extends Component {
         d=type.split(",");
         int i;
         for(i=0;i<f.length;i++) {
-            if(!d[i].equals("String"))
+            if(!d[i].equals("String") && !f[i].equals(" "))
             {
                 if(f[i].matches(d[i]))
                     continue;
                 else {
-                    System.out.println("Type_MissMatch : " + f[i] + " is not compatible!");
+                    JOptionPane.showMessageDialog(this,
+                            "Type_MissMatch : " + f[i] + " is not compatible!",
+                            "NOTE", JOptionPane.INFORMATION_MESSAGE);
+                    //System.out.println("Type_MissMatch : " + f[i] + " is not compatible!");
                     return;
                 }
             }
@@ -60,10 +63,12 @@ public class Table extends Component {
             else
                 out.println(line1);
         }
-        if(flag==0)
+        if(flag==0){
             JOptionPane.showMessageDialog(this,
                     "No record found with Field value :" + val,
                     "NOTE", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         System.out.println(str+ " " + val + " " + i);
         out.close();in.close();
         bw = new BufferedWriter(new FileWriter(filePath));
@@ -95,10 +100,12 @@ public class Table extends Component {
             else
                 out.println(line1);
         }
-        if(flag==0)
+        if(flag==0){
             JOptionPane.showMessageDialog(this,
                     "No record found with Field value " + val,
                     "NOTE", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         System.out.println( val + " " + i);
         out.close();in.close();
         bw = new BufferedWriter(new FileWriter(filePath));
@@ -298,11 +305,44 @@ public class Table extends Component {
                 {
                     str[3]=str[3].substring(1,str[3].length()-1);
                     insert(str[3]);
+                }else if(str.length==5){
+                    str[2]=str[2].substring(1,str[2].length()-1);
+                    str[4]=str[4].substring(1,str[4].length()-1);
+                    String[] fiel=new String[20];
+                    String[] val=new String[20];
+                    fiel=str[2].split(",");
+                    val=str[4].split(",");
+                    int flag;String finalstr="";
+                    for(int j=0;j<col.length;j++){
+                        flag=0;
+                        for(int k=0;k<fiel.length;k++){
+                            if(fiel[k].equals(col[j])){
+                                flag=1;
+                                finalstr+=val[k]+",";
+                                fiel[k]="";
+                                break;
+                            }
+                        }
+                        if(flag==0)
+                            finalstr+=" ,";
+                    }
+                    for(int j=0;j<fiel.length;j++)
+                        if(!fiel[j].equals("")){
+                                JOptionPane.showMessageDialog(this,
+                                        "Invalid Syntax!!\\n Field " +fiel[j] + " doesn't exist.",
+                                        "ERROR", JOptionPane.ERROR_MESSAGE);
+
+                            //System.out.println("Invalid Syntax!!\n Field "+fiel[j] + " doesn't exist." );
+                            return null;
+                        }
+                    finalstr=finalstr.substring(0,finalstr.length()-1);
+                    insert(finalstr);
                 }
                 else
                 {
                     JOptionPane.showMessageDialog(this, "Invalid Syntax...Check your Syntax ",
                             "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return null;
                 }
                 break;
             case 'S' :
