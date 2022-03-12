@@ -1,0 +1,50 @@
+->Create
+Syntax: Table-name create (Column names)
+Example: college create (cid-int,cname-String,cphn-int,cmail-String)
+
+->Insert
+ (I)
+Syntax: Table-name insert values (values to be inserted)
+Example: college insert values (1,mit ,24455987,mit@gmail.com) 
+(II)
+Syntax: Table-name insert (Column names)values (values to be inserted)
+Example: college insert (cid,cname) values (2,ceg)
+
+->Add
+(I)
+Syntax:Table-name add column (column_name,column_type)
+Example: college add column (cloaction,String)
+(II) 
+Syntax: Table-name add column (column_name,column_type) val=value
+Example: college add column (fees,int) val=20000
+
+->Drop
+Syntax: Table-name field Column-name drop
+Example: college field clocation drop 
+
+->Update
+Syntax: Table-name update value to be updated where condition
+Example: college update cphn=44568787 where cid=2;
+
+->Delete
+Syntax: Table-name delete record where condition
+Example: college delete record where cid=4
+
+->Select
+(i)
+Syntax: Table-name select all
+Example: college select all
+(ii)
+Syntax: Table-name select (column_names)
+Example: college select (cid,cname,fees)
+
+(iii)
+Syntax: Table-name select all where condition
+Example: college select all where cid=1
+
+(iv)	
+Syntax: Table-name select (column name) where condition
+Example: college select (cid,cname,fees) where cid=5
+
+
+
